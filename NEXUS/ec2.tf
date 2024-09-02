@@ -36,11 +36,11 @@ resource "aws_security_group" "ec2_security_group_nexus" {
 
   # allow access on port 8080
   ingress {
-    description      = "nexus access"
-    from_port        = 8081
-    to_port          = 8081
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+ #   description      = "nexus access"
+ #   from_port        = 8081
+ #   to_port          = 8081
+ #   protocol         = "tcp"
+ #   cidr_blocks      = ["0.0.0.0/0"]
   }
 
   # ingress {
