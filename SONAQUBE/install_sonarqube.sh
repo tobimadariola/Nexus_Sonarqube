@@ -1,4 +1,3 @@
-#!/bin/bash
 sudo cp /etc/sysctl.conf /root/sysctl.conf_backup
 
 # Modify Kernel System Limits for Sonarqube
