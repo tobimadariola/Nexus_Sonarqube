@@ -4,13 +4,13 @@ pipeline {
     stages {   
         stage('Build with maven') {
             steps {
-                sh 'cd SampleWebApp && mvn clean install'
+                sh 'cd WebApplication && mvn clean install'
             }
         }
         
              stage('Test') {
             steps {
-                sh 'cd SampleWebApp && mvn test'
+                sh 'cd WebApplication && mvn test'
             }
         
             }
@@ -18,7 +18,7 @@ pipeline {
 
            steps {
                   withSonarQubeEnv('sonar-server') {
-             sh "mvn -f SampleWebApp/pom.xml sonar:sonar"      
+             sh "mvn -f WebApplication/pom.xml sonar:sonar"      
                }
             }
        }
@@ -29,8 +29,7 @@ pipeline {
         }
         stage('push to nexus') {
             steps {
-              nexusArtifactUploader artifacts: [[artifactId: 'SampleWebApp', classifier: '', file: 'SampleWebApp/target/SampleWebApp.war', type: 'war']], credentialsId: 'nexusp', groupId: 'SampleWebApp', nexusUrl: 'ec2-184-73-112-11.compute-1.amazonaws.com:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshot', version: '1.0 SNAPSHOT'
-            }   
+                nexusArtifactUploader artifacts: [[artifactId: 'WebAppliation', classifier: '', file: 'WebApplication/target/WebApplication.war', type: 'war']], credentialsId: 'nexusp', groupId: 'WebApplication', nexusUrl: 'ec2-184-73-112-11.compute-1.amazonaws.com:8081/', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshot', version: '1.0 SNAPSHOT'    
             
         }
         
